@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoGols Brasileirão | O Jogo do Vrau</title>
+    <meta name="description"
+        content="A união suprema entre futebol e carros. Escolha seu time da Série A e conquiste o Brasileirão no modo Antigravity!">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Main Loading/Intro -->
+        <div id="intro-screen" class="screen active">
+            <div class="glass-panel">
+                <h1 class="glitch-text" data-text="AUTOGOLS">AUTOGOLS</h1>
+                <p class="subtitle">BRASILEIRÃO EDITION</p>
+                <div class="loader-container">
+                    <div class="loader-bar"></div>
+                </div>
+                <button id="btn-enter" class="btn-primary">ENTRAR NA ARENA</button>
+            </div>
+        </div>
+
+        <!-- Team Selection -->
+        <div id="selection-screen" class="screen">
+            <div class="selection-container">
+                <div class="selection-header">
+                    <h2>ESCOLHA SEU <span class="highlight">TIME</span></h2>
+                    <p>Série A - Temporada 2026</p>
+                </div>
+                <div id="team-grid" class="team-grid">
+                    <!-- Teams will be injected here via JS -->
+                </div>
+                <div class="selection-actions">
+                    <button id="btn-next-opponent" class="btn-secondary" disabled>PRÓXIMO: ESCOLHER ADVERSÁRIO</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Difficulty Selection -->
+        <div id="difficulty-screen" class="screen">
+            <div class="glass-panel">
+                <h2>NÍVEL DE <span class="highlight">DESAFIO</span></h2>
+                <div class="difficulty-options">
+                    <button class="diff-btn" data-diff="normal">
+                        <span class="diff-name">NORMAL</span>
+                        <span class="diff-desc">Para iniciantes</span>
+                    </button>
+                    <button class="diff-btn" data-diff="hard">
+                        <span class="diff-name">HARD</span>
+                        <span class="diff-desc">Perseguição precisa</span>
+                    </button>
+                    <button class="diff-btn special" data-diff="corinthians">
+                        <span class="diff-name">NÍVEL CORINTHIANS</span>
+                        <span class="diff-desc">Defesa Impenetrável</span>
+                    </button>
+                </div>
+                <button id="btn-start-game" class="btn-primary">INICIAR PARTIDA</button>
+            </div>
+        </div>
+
+        <!-- Game Overlay -->
+        <div id="game-ui" class="game-ui">
+            <div class="scoreboard">
+                <div class="team-score player">
+                    <img id="ui-player-logo" src="" alt="">
+                    <span id="player-goals">0</span>
+                </div>
+                <div class="vs-container">
+                    <div class="tournament-phase" id="ui-phase">OITAVAS DE FINAL</div>
+                    <div class="timer">02:00</div>
+                </div>
+                <div class="team-score machine">
+                    <span id="machine-goals">0</span>
+                    <img id="ui-machine-logo" src="" alt="">
+                </div>
+            </div>
+
+            <div class="turbo-bar-container">
+                <div class="turbo-label">TURBO (B)</div>
+                <div class="turbo-bar">
+                    <div id="turbo-fill"></div>
+                </div>
+            </div>
+
+            <div id="goal-announcement" class="goal-announcement">
+                <h2 id="goal-text">GOL!</h2>
+            </div>
+        </div>
+
+        <!-- Game Canvas Container -->
+        <div id="canvas-container"></div>
+
+        <!-- Trophy Screen -->
+        <div id="victory-screen" class="screen">
+            <div class="glass-panel">
+                <div class="trophy-container">
+                    <i data-lucide="trophy" class="trophy-icon"></i>
+                </div>
+                <h1 id="victory-message">CAMPEÃO!</h1>
+                <p id="vai-team" class="vai-team">VAI, TIME!</p>
+                <button onclick="location.reload()" class="btn-primary">JOGAR NOVAMENTE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Three.js and Cannon.js (for physics) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
